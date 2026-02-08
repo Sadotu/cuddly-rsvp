@@ -1,3 +1,23 @@
-﻿node_modules/
+# Node.js backend files (not needed for GitHub Pages)
+node_modules/
+package.json
+package-lock.json
+server.js
 rsvps.json
 rsvp-logs.txt
+
+# Development files
+index.html
+event-rsvp.html
+README.md
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
