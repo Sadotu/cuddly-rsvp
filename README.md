@@ -1,57 +1,54 @@
 # Cuddly RSVP - Event RSVP Application
 
-A modern event RSVP web application with a cozy green and gray color scheme, featuring a "I'm not a robot" checkbox captcha and persistent backend storage.
+A modern event RSVP web application with a cozy green and gray color scheme, featuring a "I'm not a robot" checkbox captcha and Supabase backend for real-time updates.
 
 ## Features
 
 - Clean, responsive design with green/gray gradient theme
 - Checkbox-style captcha verification
-- Backend API for persistent RSVP storage
-- Real-time RSVP list updates
+- Maximum 12 confirmed attendees with automatic waiting list
+- Real-time RSVP list updates across all devices
+- Easy cancellation with confirmation modal
 - Mobile-friendly interface
+- Supabase backend for persistent storage
 
 ## Setup Instructions
 
-### 1. Install Dependencies
+See [SUPABASE_SETUP.md](SUPABASE_SETUP.md) for complete setup instructions.
 
-```bash
-npm install
-```
+## Quick Start
 
-### 2. Start the Server
-
-```bash
-npm start
-```
-
-The server will start at `http://localhost:3000`
-
-### 3. Open in Browser
-
-Navigate to `http://localhost:3000` in your web browser.
+1. Create a Supabase account at [https://supabase.com](https://supabase.com)
+2. Run the SQL schema from `supabase-schema.sql` in your Supabase project
+3. Configure your Supabase credentials in `index.html` (lines 606-607)
+4. Deploy to GitHub Pages or open `index.html` locally
 
 ## How It Works
 
 - **Frontend**: Single-page application built with vanilla HTML, CSS, and JavaScript
-- **Backend**: Express.js server with REST API
-- **Storage**: RSVPs are saved to `rsvps.json` file (persists between server restarts)
+- **Backend**: Supabase (PostgreSQL database with real-time subscriptions)
+- **Storage**: RSVPs are saved to Supabase database with automatic sync
 - **Captcha**: Simple checkbox verification system
 
-## API Endpoints
+## Features
 
-- `GET /api/rsvps` - Fetch all RSVPs
-- `POST /api/rsvp` - Submit a new RSVP (requires `name` in request body)
-- `POST /api/verify-captcha` - Verify captcha challenge
+- Maximum capacity of 12 confirmed attendees
+- Automatic waiting list when event is full
+- Real-time updates using Supabase subscriptions
+- Cancel RSVP with confirmation dialog
+- Automatic promotion from waiting list when spots open
 
 ## File Structure
 
 ```
 cuddly rsvp/
-├── index.html          # Frontend application
-├── server.js           # Backend Express server
-├── package.json        # Node.js dependencies
-├── rsvps.json          # RSVP data storage (auto-generated)
-└── README.md          # This file
+├── index.html              # Frontend application with Supabase integration
+├── supabase-schema.sql     # Database schema for Supabase
+├── server.js               # Legacy Express server (not used)
+├── package.json            # Node.js dependencies (not needed for deployment)
+├── SUPABASE_SETUP.md       # Detailed setup instructions
+├── README-GITHUB.md        # GitHub-specific documentation
+└── README.md               # This file
 ```
 
 ## Color Scheme
@@ -63,6 +60,7 @@ The application uses a cozy color palette inspired by the cuddly couch theme:
 
 ## Notes
 
-- RSVPs are stored locally in `rsvps.json`
-- The captcha is a simple verification system (in production, consider using Google reCAPTCHA or similar)
-- CORS is enabled for local development
+- RSVPs are stored in Supabase PostgreSQL database
+- The captcha is a simple verification system (for production, consider using Google reCAPTCHA or similar)
+- Real-time updates use Supabase's WebSocket subscriptions
+- No backend server needed - static hosting on GitHub Pages works perfectly

@@ -113,8 +113,8 @@ $$ LANGUAGE plpgsql;
 
 ## Step 6: Configure Your Application
 
-1. Open the file `index-supabase.html`
-2. Find these lines near the top of the `<script>` section (around line 618):
+1. Open the file `index.html`
+2. Find these lines near the top of the `<script>` section (around line 606-607):
 
 ```javascript
 const SUPABASE_URL = 'YOUR_SUPABASE_URL';
@@ -132,7 +132,7 @@ const SUPABASE_ANON_KEY = 'eyJhbGc...your-actual-key...';
 
 ## Step 7: Test Locally
 
-1. Open `index-supabase.html` in your web browser
+1. Open `index.html` in your web browser
 2. Try adding an RSVP
 3. Check if it appears in the list
 4. Try cancelling an RSVP
@@ -159,15 +159,10 @@ const SUPABASE_ANON_KEY = 'eyJhbGc...your-actual-key...';
 cd "/mnt/c/Users/nickd/DevProjects/cuddly rsvp"
 ```
 
-3. Rename the Supabase file to index.html:
-```bash
-mv index-supabase.html index.html
-```
-
-4. Initialize git and push:
+3. Initialize git (if not already done) and push:
 ```bash
 git init
-git add index.html
+git add index.html supabase-schema.sql README.md SUPABASE_SETUP.md
 git commit -m "Initial commit: Cuddly Couch RSVP"
 git branch -M main
 git remote add origin https://github.com/YOUR-USERNAME/cuddly-couch-rsvp.git

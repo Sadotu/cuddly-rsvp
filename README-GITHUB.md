@@ -30,7 +30,7 @@ See [SUPABASE_SETUP.md](SUPABASE_SETUP.md) for complete setup instructions.
 
 1. Create a Supabase account
 2. Run the SQL schema from `supabase-schema.sql`
-3. Configure your Supabase credentials in `index-supabase.html`
+3. Configure your Supabase credentials in `index.html`
 4. Deploy to GitHub Pages
 
 ---
