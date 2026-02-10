@@ -608,7 +608,7 @@
         const MAX_ATTENDEES = 12;
 
         // Initialize Supabase client
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         // DOM elements
         const rsvpButton = document.getElementById('rsvpButton');
@@ -651,7 +651,7 @@
         // Fetch RSVPs from Supabase
         async function fetchRSVPs() {
             try {
-                const { data, error } = await supabase
+                const { data, error } = await client
                     .from('rsvps')
                     .select('*')
                     .order('created_at', { ascending: true });
@@ -758,7 +758,7 @@
 
             try {
                 // Get current count
-                const { data: existingRSVPs, error: countError } = await supabase
+                const { data: existingRSVPs, error: countError } = await client
                     .from('rsvps')
                     .select('status');
 
@@ -768,7 +768,7 @@
                 const status = confirmedCount < MAX_ATTENDEES ? 'confirmed' : 'waitlist';
 
                 // Insert RSVP
-                const { error: insertError } = await supabase
+                const { error: insertError } = await client
                     .from('rsvps')
                     .insert([{ name, status }]);
 
@@ -813,7 +813,7 @@
 
             try {
                 // Delete the RSVP
-                const { error: deleteError } = await supabase
+                const { error: deleteError } = await client
                     .from('rsvps')
                     .delete()
                     .eq('id', nameToCancel.id);
@@ -821,7 +821,7 @@
                 if (deleteError) throw deleteError;
 
                 // Check if we need to promote someone from waitlist
-                const { data: waitlistData, error: waitlistError } = await supabase
+                const { data: waitlistData, error: waitlistError } = await client
                     .from('rsvps')
                     .select('*')
                     .eq('status', 'waitlist')
@@ -830,7 +830,7 @@
 
                 if (waitlistError) throw waitlistError;
 
-                const { data: confirmedData, error: confirmedError } = await supabase
+                const { data: confirmedData, error: confirmedError } = await client
                     .from('rsvps')
                     .select('*')
                     .eq('status', 'confirmed');
@@ -839,7 +839,7 @@
 
                 // If there's someone on waitlist and space in confirmed, promote them
                 if (waitlistData.length > 0 && confirmedData.length < MAX_ATTENDEES) {
-                    const { error: updateError } = await supabase
+                    const { error: updateError } = await client
                         .from('rsvps')
                         .update({ status: 'confirmed' })
                         .eq('id', waitlistData[0].id);
@@ -879,7 +879,7 @@
         });
 
         // Subscribe to real-time changes
-        supabase
+        client
             .channel('rsvps-channel')
             .on('postgres_changes', { event: '*', schema: 'public', table: 'rsvps' }, () => {
                 fetchRSVPs();
