@@ -8,8 +8,8 @@ const PORT = 3000;
 const DATA_FILE = path.join(__dirname, 'rsvps.json');
 const LOG_FILE = path.join(__dirname, 'rsvp-logs.txt');
 const MAX_ATTENDEES = 12;
-const EVENT_END_TIME = new Date('2026-02-13T22:00:00'); // 3 hours after event start (19:00)
-const LOG_DELETE_TIME = new Date('2026-04-13T19:00:00'); // 2 months after event start
+const EVENT_END_TIME = new Date('2026-02-27T22:00:00'); // 3 hours after event start (19:00)
+const LOG_DELETE_TIME = new Date('2026-04-27T19:00:00'); // 2 months after event start
 
 // Log function
 async function logAction(action, details) {
