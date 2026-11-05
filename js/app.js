@@ -1,7 +1,7 @@
 // CONFIGURATION - Replace with your Supabase credentials
 const SUPABASE_URL = 'https://dlgryeefywbqojjhutde.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRsZ3J5ZWVmeXdicW9qamh1dGRlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA1NzEwOTUsImV4cCI6MjA4NjE0NzA5NX0.AuFvSxBDWRN72FKtxr4kdnRylpfdlxMgvw-G7yHeEKo';
-const MAX_ATTENDEES = 12;
+const MAX_ATTENDEES = 24;
 
 // Initialize Supabase client
 const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
