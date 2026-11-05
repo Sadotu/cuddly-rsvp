@@ -7,7 +7,7 @@ const app = express();
 const PORT = 3000;
 const DATA_FILE = path.join(__dirname, 'rsvps.json');
 const LOG_FILE = path.join(__dirname, 'rsvp-logs.txt');
-const MAX_ATTENDEES = 12;
+const MAX_ATTENDEES = 24;
 const EVENT_END_TIME = new Date('2026-03-27T22:00:00'); // 3 hours after event start (19:00)
 const LOG_DELETE_TIME = new Date('2026-05-27T19:00:00'); // 2 months after event start
 
